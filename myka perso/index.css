@@ -1,0 +1,9 @@
+*{
+    background: #96D58F;
+    background: -moz-linear-gradient(-45deg, #96D58F 0%, #E0DD5D 54%, #EFAC3C 100%);
+    background: -webkit-linear-gradient(-45deg, #96D58F 0%, #E0DD5D 54%, #EFAC3C 100%);
+    background: linear-gradient(135deg, #96D58F 0%, #E0DD5D 54%, #EFAC3C 100%);
+}
+input{
+    position:relative
+}
