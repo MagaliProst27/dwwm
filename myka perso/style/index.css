@@ -1,0 +1,58 @@
+*{
+    font-family: 'Cookie', cursive;
+    font-size: x-large;
+}
+.container{
+    
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-basis: auto;
+
+}
+body{
+    background: rgb(238,174,202);
+    background: linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
+h1{
+  font-size: 120px;
+  text-align: justify;
+}
+.item1{
+    display: flex;
+    justify-content: center;
+}
+.menu {
+    display: flex;                /* Transformation en flexbox */
+    padding:0;                    /* Suppression des marges internes */
+    justify-content: space-around;/* Alignements des liens dans le menu */
+}
+.menu li {
+    list-style-type: none ;       /* Suppression des puces */
+  
+}
+.menu a {
+    display:block;                /* Transformation en block */
+    min-width: 120px;             /* Largeur minimale des liens */   
+    margin: 0.5rem;               /* Marges externes */
+    padding: 0.4rem 0;            /* Marges internes */
+    text-align: center;           /* Centrage du texte */   
+    background-color: rgb(238,174,202);    /* Arrière-plan */
+    color: black;                  /* Couleur du texte */
+    text-decoration: none;        /* Suppression du soulignement */
+    border: 1px solid #fff;       /* Ajout d'une bordure */
+    border-radius: 4px;           /* Arrondis des bordures */
+    
+    transition: all 1s ;          /* Ajout des effets de transition */
+}
+.menu a.actif {    
+    background-color: #000 ; 
+    color: #1ABC9C ;
+    border-color: #1ABC9C ;
+}
+.menu a:hover,
+.menu a:hover.actif{
+    background-color:rgba(148,187,233,1);
+    color: white;
+    border-color: white;
+}
