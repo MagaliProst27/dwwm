@@ -60,12 +60,12 @@ p{
 }
 .button{
   display: flex;
-  
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: xx-large;
 flex-direction: column;
 justify-self: right;
 margin: 0;
 padding: 0;
-
 }
 
   .pdp {
@@ -99,9 +99,35 @@ padding: 0;
     -webkit-align-self: auto;
     -ms-flex-item-align: auto;
     align-self: auto;
-    bottom: 10%;
     }
-}
 
+    .col-md-3 > img,
+    .col-md-6 > img,
+    .col-md-6 > div {
+      width:auto;
+      margin: auto;
+      display: block;
+    }
 
-
+    .carousel-item,
+    .carousel-inner,
+    .carousel-inner img {
+      height: 100%;
+      width: auto;
+      margin:auto;
+    }
+    
+    .carousel-item {
+      text-align: center;
+      width: 100%;
+      margin: auto;
+    }
+    
+    .modal-dialog {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      margin: auto;
+      right: 0;
+    }    
+    

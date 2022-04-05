@@ -1,0 +1,13 @@
+.carousel-item,
+.carousel-inner,
+.carousel-inner img {
+  height: 100%;
+  width: auto;
+  margin:auto;
+}
+
+.carousel-item {
+  text-align: center;
+  width: 100%;
+  margin: auto;
+}
