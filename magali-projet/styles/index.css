@@ -1,32 +1,48 @@
 .carousel-inner {
-    width: 100%;
-    height: auto;
-    margin: auto;
-  }
-  
-  .carousel-inner .carousel-item img {
-    object-fit: cover;
-    object-position: center;
-    overflow: hidden;
-    height:50vh;
-  }
-  
-  
-  .carousel-inner .carousel-item:before {
-    content: "";
-    background-image:
-      linear-gradient(
-        to bottom,
-        transparent, rgba(0,0,0,0.5)
-      );
-    display: block;
-    position: absolute;
-    top: 0;
-    width: 100vw;
-    height: 50vh;
-  }
-  }
-div.video{
-    display: flex;
-    te: center;
+  width: 100%;
+  height: auto;
+  margin: auto;
 }
+
+.carousel-inner .carousel-item img {
+  object-fit: cover;
+  object-position: center;
+  overflow: hidden;
+  height:50vh;
+}
+
+
+.carousel-inner .carousel-item:before {
+  content: "";
+  background-image:
+    linear-gradient(
+      to bottom,
+      transparent, rgba(0,0,0,0.5)
+    );
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 50vh;
+}
+  .card{
+    text-align: justify;
+    background: rgba(0,0,0,0.8);
+    color: azure;
+   left: 30%;
+   right: 25%;
+    
+}
+
+div.modal-header, div.modal-body, div.modal-footer{
+  background: rgba(0,0,0,0.8);
+  color: azure;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+box-shadow: 5px 5px 15px 5px #000000;
+text-align: center;
+}
+button.btn-close{
+  color: aqua;
+}
+ 
+    

@@ -1,19 +1,16 @@
-#container{
-    display: flex;
-    flex-direction: column;
-}
-
-
 table.steelBlueCols {
     border: 4px solid #555555;
     background-color: #555555;
     width: 400px;
     text-align: center;
     border-collapse: collapse;
+    margin: 180px;
+    
   }
   table.steelBlueCols td, table.steelBlueCols th {
     border: 1px solid #555555;
     padding: 5px 10px;
+    
   }
   table.steelBlueCols tbody td {
     font-size: 12px;
@@ -53,10 +50,20 @@ table.steelBlueCols {
   }
   div .card-body{
       text-align: center;
-justify-items: justify;
+      justify-items: justify;
 
   }
   .steelbluecols .center{
      margin-left: auto;
      margin-right: auto;
   }
+.card{
+    text-align: justify;
+    background: rgba(0,0,0,0.8);
+    color: azure;
+    left: 35rem;
+   right: 25rem;
+  }
+  
+ 
+  
