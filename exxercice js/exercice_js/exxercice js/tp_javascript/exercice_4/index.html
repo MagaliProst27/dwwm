@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <title>Vos tables de multiplication</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/
+4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/
+4.7.0/css/font-awesome.min.css">  
+  <script type="text/javascript">
+var num = Math.floor(Math.random() * 100) + 1;
+var NbEssais = 0;
+function Devine() {
+var choisi = document.form1.devine1.value;
+NbEssais++;
+status = "Nombre d'essais : " + NbEssais;
+document.getElementById('nbessaie').innerHTML =10-NbEssais;
+if (choisi < num) 
+document.getElementById('indice').innerHTML = "<font color='red'>Non, le nombre est plus grand.</font>";
+if (choisi > num)
+document.getElementById('indice').innerHTML = "<font color='red'>Non, le nombre est plus petit.</font>";
+if (choisi == num) {
+    window.alert("Correct ! Vous avez trouvé en " + NbEssais + "essais.");
+    location.reload();
+	document.getElementById('nbessaie').innerHTML =10;
+
+    }
+if (NbEssais == 10) {
+    window.alert("Désolé, c'est fini. Le nombre correct était : " + num);
+    location.reload();
+	document.getElementById('nbessaie').innerHTML =10;
+
+    }
+}
+
+    </script> 
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<fieldset class="border p-2">
+				<legend  class="w-auto">Devinette</legend>
+	<h1><font color="black">Trouver le bon nombre</font></h1>
+	<hr>
+	<p><font color="green" size=+1>Vous devez trouver un 
+nombre entre 1 et 100. Vous n'avez que <font color="red" size="12"> 
+<i id="nbessaie"></i> </font>essais.</font></p>
+	<form NAME="form1">
+		<div class="form-group">
+			<label>Entrez votre nombre</label>
+			<label id="indice"></label>
+	<br>
+	<b><font color="green" size=+1>Votre choix :</font></b> 
+	<input TYPE="text" NAME="devine1" SIZE="5"></br>
+	
+	<button type="button" class="btn btn-primary btn-lg btn-block 
+mt-4" onClick="Devine();">Essayer</button>
+</div>
+</form></fieldset>
+
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/
+3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/
+1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/
+4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

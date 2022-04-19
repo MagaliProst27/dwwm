@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" >
+
+        dc1 <input type="number" size="10" maxlength="10" name="name" id="nbre" /><br />
+        dc2 <input type="number" size="10" maxlength="10" name="password" id="nbre" /><br />
+        ds <input type="number" size="10" maxlength="10" name="password" id="nbre" /><br />
+
+        <input type="submit" value="calculez la moyenne" onclick="moyenne"/> <br/>
+        moyenne <input type="number" size="10" maxlength="10" name="password" id="result"/><br />
+
+    </form>
+    <script>
+function moyenne(){
+
+let nbre = parsInt(document.getElementById("nbre"));
+let moyenne = nbre/3;
+document.getElementById("result").innerHTML=moyenne;
+}
+
+
+    
+
+
+
+    </script>
+</body>
+</html>
