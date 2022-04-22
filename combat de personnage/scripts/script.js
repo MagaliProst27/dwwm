@@ -180,7 +180,7 @@ class Match {
     var winner = false;
     var winnerPlayer = 0;
     // -----------------------------------------------------------NEXT TYPE
-    var _nextType = "normands";
+    var _nextType = "Normands";
     this.Getnexttype = function () {
       return _nextType;
     };
@@ -189,41 +189,46 @@ class Match {
     var joueurs = new Array();
     var nbrejoueurcree = 0;
     var nomSaisie = "";
+    console.log("test1");
     // --------------------------------AJOUTE UN PERSO DANS LE TABLEAU-----------------
     if (nbrJoueur % 2 != 0) {
       alert("Le nombre de joueur doit être pair");
-    } else {
-      while (
-        nbrejoueurcree < nbrJoueur &&
-        nomSaisie == "" &&
-        nbrJoueur % 2 == 0
-      ) {
+    }
+    if (nbrJoueur % 2 == 0) {
+      console.log("test");
+      while (nbrejoueurcree < nbrJoueur && nomSaisie == "") {
+        console.log("Boucle");
         nomSaisie = prompt("Saisissez un nom:");
         var bPresent = false;
         var i;
-        if (joueurs.length > 0) {
+        if (joueurs.length >  0) {
+          console.log("FOR");
           for (i = 0; i < joueurs.length; i++) {
             if (joueurs[i].Getnom() == nomSaisie) {
               bPresent = true;
               alert("Ce nom existe déjà");
+              nomSaisie = "";
+            }
+
+            // Ici ça marche pas--------------------------------------------------
+            if (bPresent == false && joueurs.length % 2 == 0) {
+              perso = new Normands(nomSaisie);
+              perso.afficherInfo();
+              joueurs.push(perso);
+              nbrejoueurcree += 1;
+              nomSaisie = "";
+            }
+            if (bPresent == false && joueurs.length % 2 == 0.5) {
+              perso = new Bretons(nomSaisie);
+              perso.afficherInfo();
+              joueurs.push(perso);
+              nbrejoueurcree += 1;
+              nomSaisie = "";
             }
           }
+          // ---------------------------------------------------------------------
         }
-        // Ici ça marche pas--------------------------------------------------
-        if (bPresent == false && joueurs.length % 2 == 0) {
-          perso = new Normands(nomSaisie);
-          perso.afficherInfo();
-          joueurs.push(perso);
-          nbrejoueurcree += 1;
-        }
-        if (bPresent == false && joueurs.length % 2 == 0.5) {
-          perso = new Bretons(nomSaisie);
-          perso.afficherInfo();
-          joueurs.push(perso);
-          nbrejoueurcree += 1;
-        }
-        // ---------------------------------------------------------------------
-        nomSaisie = "";
+        // nomSaisie = "";
       }
     }
     // ------FONCTION RANDOM----------
