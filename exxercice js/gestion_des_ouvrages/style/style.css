@@ -1,0 +1,11 @@
+*{
+    font-style: italic ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: justify;
+}
+.preview{
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    width: auto;
+}
