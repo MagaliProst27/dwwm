@@ -11,7 +11,7 @@ function ChargeInfosJson() {
     })
     .then((data) => {
       console.log(data);
-      CreateDivs(data);
+      createList(data); /* Appelons notre fonction */
     });
 }
 
@@ -70,19 +70,6 @@ var categoriesList = new Array();
 
 var categoryBookList = new Array();
 
-/*On cree une fonction pour l'évenemet onload*/
-function jsonOnLoad() {
-  /* Allons chercher un fichier JSON */
-  fetch("books.JSON")
-    .then((response) => {
-      /* Une fois que le fichier est chargé */
-      return response.json(); /* Convertissons le en json */
-    })
-    .then((data) => {
-      /* Une fois le fichier converti */
-      createList(data); /* Appelons notre fonction */
-    });
-}
 //fonction qui créé les listes déroulantes
 var createList = function (data) {
   for (var x = 0; x < data.length; x++) {
@@ -121,5 +108,10 @@ var createList = function (data) {
     option.innerText = categoriesList[x];
     document.getElementById("listCategories").appendChild(option);
   }
-  showBooks(booksList); /* Appelons notre fonction */
+  CreateDivs(booksList); /* Appelons notre fonction */
+ 
+};
+var afficherAuteur = function (data) {
+   
+  
 };

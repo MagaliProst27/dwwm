@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/style.css">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="css.css"> -->
+
 </head>
-<body onload="ChargeInfosJson()">
-    
-       
-    
+
+<body onload="jsonOnLoad();">
     <div class="menu1">
         <select id="listAuthors" onchange="ChargeByAuthor()"></select>
     </div>
@@ -18,7 +19,8 @@
         <select id="listCategories" onchange="ChargeByCategory()"></select>
     </div>
     <div id="booksList"></div>
-    <div class="preview"></div>
-    <script src="script/script.js"></script>
+
+    <script src="index.js"></script>
 </body>
+
 </html>
