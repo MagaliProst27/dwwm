@@ -1,5 +1,5 @@
 function ChargeInfosJson() {
-  fetch("format_quizz.json")
+  fetch("script/format_quiz.json")
     .then((response) => {
       return response.json();
     })
@@ -16,7 +16,7 @@ function CreateDivs(data) {
   var listData = data;
   for (var y = 0; y < listData.length; y++) {
     const ennonce = document.createElement("div");
-    ennonce.innerHTML = listData[y].question;
+    ennonce.innerHTML = listData[y].questions;
     ennonce.setAttribute("class", "ennonce");
 
     const explication = document.createElement("div");
@@ -35,18 +35,11 @@ function CreateDivs(data) {
     for (var x = 0; x < listQuestions.length; x++) {
       var choix = document.createElement("div");
       choix.setAttribute("class", "card");
-      choix.innerHTML += '<li class="choix">' + listQuestions[x] + "</li>";
+      choix.innerHTML +=
+        '<button class="choix">' + listQuestions[x] + "</button>";
 
       questions.appendChild(choix);
     }
     preview.appendChild(questions);
-  }
-}
-ChargeInfosJson();
-
-var score = 0;
-for (x = 0; x < data.Questions.length; x++) {
-  if (data.choices == data.correct) {
-    score++;
   }
 }
