@@ -41,5 +41,12 @@ function CreateDivs(data) {
       questions.appendChild(choix);
     }
     preview.appendChild(questions);
+    break;
   }
+}
+ChargeInfosJson();
+
+function next(data) {}
+for (let i = 0; i < listData.length; i++) {
+  const element = array[i];
 }
