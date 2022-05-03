@@ -45,8 +45,3 @@ function CreateDivs(data) {
   }
 }
 ChargeInfosJson();
-
-function next(data) {}
-for (let i = 0; i < listData.length; i++) {
-  const element = array[i];
-}
