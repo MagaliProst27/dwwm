@@ -25,12 +25,25 @@ loadAsJson(urlRandom).then((dataJson) => {
     var element2 = document.createElement("img");
     element2.src = dataJson.drinks[i].strDrinkThumb;
     element.appendChild(element2);
+    var name = document.createElement("h2");
+    name.innerHTML = dataJson.drinks[i].strDrink;
+    element.appendChild(name);
+
+    for (let x = 1; x < 16; x++) {
+      let ingredient = document.createElement("ons-list-item");
+      ingredient.innerHTML = dataJson.drinks[i][`strIngredient${x}`];
+      element.appendChild(ingredient);
+    }
+    var category = document.createElement("p");
+    category.innerHTML = dataJson.drinks[i].strCategory;
+    element.appendChild(category);
+
+    var type = document.createElement("p");
+    type.innerHTML = "Type: " + dataJson.drinks[i].strAlcoholic;
+    element.appendChild(type);
+
+    var instructions = document.createElement("p");
+    instructions.innerHTML = dataJson.drinks[i].strInstructions;
+    element.appendChild(instructions);
   }
 });
-/*function buttonClickGet() {
-  var nameSearch = document.getElementsByClassName("form-control me-2").value;
-  nameSearch =
-    "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" +
-    dataJson.drinks[i].strDrink +
-    '"';
-}*/

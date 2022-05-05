@@ -1,0 +1,54 @@
+*{
+    background: rgba(222, 209, 216, 0.8);
+    font-family: 'Cookie', cursive;
+    font-family: 'Hind', sans-serif;
+    font-family: 'Neucha', cursive;
+    font-family: 'Oleo Script Swash Caps', cursive;
+    
+
+}
+.form-check{
+    background: black;
+    color: white;
+    display: flex;
+    flex-flow:row;
+
+}
+.form-check-label{
+    background: black;
+}
+.d-flex{
+    background: black;
+}
+input{
+    background:black;
+    color: white;
+}
+.btn {
+    background: grey;
+    color: white;
+    border-bottom: white 5px;
+}
+.btn:hover{
+    background: green;
+}
+div{
+    display:flex;
+    flex-direction:column ;
+}
+
+#zone-cocktail img{
+    width: 100%;
+   height: auto;
+}
+h2{
+    text-align: center;
+}
+ons-list-item{
+    text-align: right;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+p{
+    text-align: justify;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
