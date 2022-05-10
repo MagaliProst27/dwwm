@@ -31,7 +31,16 @@ loadAsJson(urlRandom).then((dataJson) => {
 
     for (let x = 1; x < 16; x++) {
       let ingredient = document.createElement("ons-list-item");
-      ingredient.innerHTML = dataJson.drinks[i][`strIngredient${x}`];
+      ingredient.innerHTML =
+        dataJson.drinks[i][`strMeasure${x}`] +
+        ": " +
+        dataJson.drinks[i][`strIngredient${x}`];
+      if (
+        dataJson.drinks[i][`strIngredient${x}`] == null ||
+        dataJson.drinks[i][`strMeasure${x}`] == null
+      ) {
+        break;
+      }
       element.appendChild(ingredient);
     }
     var category = document.createElement("p");
@@ -39,10 +48,10 @@ loadAsJson(urlRandom).then((dataJson) => {
     element.appendChild(category);
 
     var type = document.createElement("p");
-    type.innerHTML = "Type: " + dataJson.drinks[i].strAlcoholic;
+    type.innerHTML = "Type : " + dataJson.drinks[i].strAlcoholic;
     element.appendChild(type);
 
-    var instructions = document.createElement("p");
+    var instructions = document.createElement("ons-card");
     instructions.innerHTML = dataJson.drinks[i].strInstructions;
     element.appendChild(instructions);
   }

@@ -1,54 +1,80 @@
-*{
-    background: rgba(222, 209, 216, 0.8);
-    font-family: 'Cookie', cursive;
-    font-family: 'Hind', sans-serif;
-    font-family: 'Neucha', cursive;
-    font-family: 'Oleo Script Swash Caps', cursive;
-    
-
+* {
+  background: rgba(222, 209, 216, 0.8);
+  font-family: "Cookie", cursive;
+  font-family: "Hind", sans-serif;
+  font-family: "Neucha", cursive;
+  font-family: "Oleo Script Swash Caps", cursive;
 }
-.form-check{
-    background: black;
-    color: white;
-    display: flex;
-    flex-flow:row;
-
+.form-check {
+  background: black;
+  color: white;
+  display: flex;
+  flex-flow: row;
 }
-.form-check-label{
-    background: black;
+.form-check-label {
+  background: black;
 }
-.d-flex{
-    background: black;
+.d-flex {
+  background: black;
 }
-input{
-    background:black;
-    color: white;
+input {
+  background: black;
+  color: white;
 }
 .btn {
-    background: grey;
-    color: white;
-    border-bottom: white 5px;
+  background: grey;
+  color: white;
+  border-bottom: white 5px;
 }
-.btn:hover{
-    background: green;
+.btn:hover {
+  background: green;
 }
-div{
-    display:flex;
-    flex-direction:column ;
+div {
+  display: flex;
+  flex-direction: column;
 }
 
-#zone-cocktail img{
-    width: 100%;
-   height: auto;
+#zone-cocktail img {
+  width: 35%;
+  height: auto;
+  align-self: center;
 }
-h2{
+h2 {
+  text-align: center;
+  color: #131313;
+  -webkit-box-shadow: 0px 0px 0px 5px #A0A0A0, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px #A31925, 5px 5px 15px 5px rgba(0,0,0,0); 
+box-shadow: 0px 0px 0px 5px #A0A0A0, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px #A31925, 5px 5px 15px 5px rgba(0,0,0,0);
+margin-left:32%;
+margin-right:32%;
+
+
+
+}
+  
+ons-list-item {
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-style: italic;
+  color:darkblue;
+}
+p {
+  text-align:  left;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  
+}
+ons-card{
     text-align: center;
-}
-ons-list-item{
-    text-align: right;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-p{
-    text-align: justify;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding-left: 10%;
+  padding-right: 10%;
+  border: 5px outset #A41D86;
+border-radius: 40px 40px 40px 40px;
+background:rgba(250, 250, 250, 0.5) ;
+;
+
+
+
+
+
+
 }
