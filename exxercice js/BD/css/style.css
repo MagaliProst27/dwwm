@@ -53,8 +53,8 @@ input:focus:invalid {
 }
 .container_card{
   display: flex;
-  flex-direction: row;
-  flex-flow:wrap ;
+
+ flex-wrap: wrap;
 }
 .card{
   width: 30%;

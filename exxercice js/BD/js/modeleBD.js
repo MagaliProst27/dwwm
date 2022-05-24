@@ -111,24 +111,6 @@ jQuery(document).ready(function ($) {
   var auteur = auteurs.get(album.idAuteur);
   console.log(album.titre + " " + serie.nom + " " + auteur.nom);
 
-  console.log("Liste des albums par auteur");
-  for (var [idAuteur, auteur] of auteurs.entries()) {
-    // Recherche des albums de l'auteur
-    for (var [idAlbum, album] of albums.entries()) {
-      if (album.idAuteur == idAuteur) {
-        /* console.log(
-          auteur.nom +
-            ", Album N° " +
-            album.numero +
-            " " +
-            album.titre +
-            ", Série: " +
-            series.get(album.idSerie).nom
-        );*/
-      }
-    }
-  }
-
   // Affichage des BD
 
   imgAlbum.addEventListener("error", function () {
@@ -144,69 +126,71 @@ jQuery(document).ready(function ($) {
     getAlbum(this);
   });
 
-  createDiv();
-  recuperationInput();
-});
-//on créé la div ou mettre les cards
-function createDiv() {
-  //on definit la valeur des datas que l'on souhaite voir apparaitre et creer les card
   for (var [idAlbum, album] of albums.entries()) {
-    serie = series.get(album.idSerie);
-    auteur = auteurs.get(album.idAuteur);
-    let listAlbum = document.createElement("card");
-    listAlbum.setAttribute("class", "card");
-
-    listAlbum.setAttribute("id", "album" + idAlbum.toString());
-    let nomFic = serie.nom + "-" + album.numero + "-" + album.titre;
-
-    // Utilisation d'une expression régulière pour supprimer
-    // les caractères non autorisés dans les noms de fichiers : '!?.":$
-    nomFic = nomFic.replace(/'|!|\?|\.|"|:|\$/g, "");
-    //mise en page des cards des BD
-    listAlbum.innerHTML =
-      "<h2>" +
-      "N°: " +
-      album.numero +
-      " " +
-      album.titre +
-      "</h2>" +
-      '<img src="' +
-      srcAlbumMini +
-      nomFic +
-      '.jpg"></img>' +
-      "<p> Série: " +
-      serie.nom +
-      " " +
-      "<br>" +
-      "Auteur(s): " +
-      auteur.nom +
-      " </p>" +
-      "<h4><strong>" +
-      album.prix +
-      "€" +
-      "</strong></h4>" +
-      '<select id="qt" name="q">' +
-      '<option value="1">1</option>' +
-      '<option value="2">2</option>' +
-      '<option value="3">3</option>' +
-      '<option value="4">4</option>' +
-      '<option value="5">5</option>' +
-      '<option value="6">6</option>' +
-      '<option value="7">7</option>' +
-      '<option value="8">8</option>' +
-      '<option value="9">9</option>' +
-      "</select>" +
-      "<button>Ajouter au panier</button>";
-
-    card.appendChild(listAlbum);
+    createOneDiv(idAlbum, album);
   }
+});
+
+function createOneDiv(idalbum, album) {
+  serie = series.get(album.idSerie);
+  auteur = auteurs.get(album.idAuteur);
+
+  let listAlbum = document.createElement("card");
+  listAlbum.setAttribute("class", "card");
+
+  listAlbum.setAttribute("id", "album" + idalbum.toString());
+  let nomFic = serie.nom + "-" + album.numero + "-" + album.titre;
+
+  // Utilisation d'une expression régulière pour supprimer
+  // les caractères non autorisés dans les noms de fichiers : '!?.":$
+  nomFic = nomFic.replace(/'|!|\?|\.|"|:|\$/g, "");
+  //mise en page des cards des BD
+
+  listAlbum.innerHTML =
+    "<h2>" +
+    "N°: " +
+    album.numero +
+    " " +
+    album.titre +
+    "</h2>" +
+    '<img src="' +
+    srcAlbumMini +
+    nomFic +
+    '.jpg"></img>' +
+    "<p> Série: " +
+    serie.nom +
+    " " +
+    "<br>" +
+    "Auteur(s): " +
+    auteur.nom +
+    " </p>" +
+    "<h4><strong>" +
+    album.prix +
+    "€" +
+    "</strong></h4>" +
+    '<select id="qt" name="q">' +
+    '<option value="1">1</option>' +
+    '<option value="2">2</option>' +
+    '<option value="3">3</option>' +
+    '<option value="4">4</option>' +
+    '<option value="5">5</option>' +
+    '<option value="6">6</option>' +
+    '<option value="7">7</option>' +
+    '<option value="8">8</option>' +
+    '<option value="9">9</option>' +
+    "</select>" +
+    '<button class="ajout_panier">Ajouter au panier</button>';
+
+  card.appendChild(listAlbum);
 }
 function recuperationInput() {
+  //recuperation de la saisie sur l'input
   var saisie = document.getElementById("searchInput").value;
-
+  var idAuteurToSave = 0;
   var idSerieToSave = 0;
-  console.log("Liste des albums par série");
+  console.log(saisie);
 
+  //comparaison de la saisie avec les series
   for (var [idSerie, serie] of series.entries()) {
     if (serie.nom == saisie) {
       idSerieToSave = parseInt(idSerie);
@@ -215,59 +199,38 @@ function recuperationInput() {
       container.innerHTML = "";
       break;
     }
-  }
-  if (idSerieToSave > 0) {
-    for (var [idAlbum, album] of albums.entries()) {
-      if (album.idSerie == idSerieToSave) {
-        serie = series.get(album.idSerie);
-        auteur = auteurs.get(album.idAuteur);
-        let listAlbum = document.createElement("card");
-        listAlbum.setAttribute("class", "card");
 
-        listAlbum.setAttribute("id", "album" + idAlbum.toString());
-        let nomFic = serie.nom + "-" + album.numero + "-" + album.titre;
-
-        // Utilisation d'une expression régulière pour supprimer
-        // les caractères non autorisés dans les noms de fichiers : '!?.":$
-        nomFic = nomFic.replace(/'|!|\?|\.|"|:|\$/g, "");
-        //mise en page des cards des BD
-        listAlbum.innerHTML =
-          "<h2>" +
-          "N°: " +
-          album.numero +
-          " " +
-          album.titre +
-          "</h2>" +
-          '<img src="' +
-          srcAlbumMini +
-          nomFic +
-          '.jpg"></img>' +
-          "<p> Série: " +
-          serie.nom +
-          " " +
-          "<br>" +
-          "Auteur(s): " +
-          auteur.nom +
-          " </p>" +
-          "<h4><strong>" +
-          album.prix +
-          "€" +
-          "</strong></h4>" +
-          '<select id="qt" name="q">' +
-          '<option value="1">1</option>' +
-          '<option value="2">2</option>' +
-          '<option value="3">3</option>' +
-          '<option value="4">4</option>' +
-          '<option value="5">5</option>' +
-          '<option value="6">6</option>' +
-          '<option value="7">7</option>' +
-          '<option value="8">8</option>' +
-          '<option value="9">9</option>' +
-          "</select>" +
-          "<button>Ajouter au panier</button>";
-
-        card.appendChild(listAlbum);
+    // on crée les cards pour les series saisies
+    if (idSerieToSave > 0) {
+      for (var [idAlbum, album] of albums.entries()) {
+        if (album.idSerie == idSerieToSave) {
+          createOneDiv(idAlbum, album);
+        }
       }
     }
   }
+
+  // Recherche des albums de l'auteur
+  console.log("Liste des albums par auteur");
+  for (var [idAuteur, auteur] of auteurs.entries()) {
+    if (auteur.nom == saisie) {
+      idAuteurToSave = parseInt(idAuteur);
+      var container = document.getElementsByClassName("container_card")[0];
+      container.innerHTML = "";
+      break;
+    }
+
+    //on créé les cards pour les auteurs saisis
+    if (idAuteurToSave > 0) {
+      for (var [idAlbum, album] of albums.entries()) {
+        if (album.idAuteur == idAuteurToSave) {
+          createOneDiv(idAlbum, album);
+        }
+      }
+    }
+  }
+}
+function ajoutPanier() {
+  var ajoutePanier = document.getElementsByClassName("ajout_panier");
+  ajoutePanier.setAttribute("id", "btn" + idAlbum.toString());
 }
