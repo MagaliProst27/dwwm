@@ -140,7 +140,14 @@ function createOneDiv(idalbum, album) {
 
   listAlbum.setAttribute("id", "album" + idalbum.toString());
   let nomFic = serie.nom + "-" + album.numero + "-" + album.titre;
+  let button = document.createElement("div");
 
+  button.innerHTML =
+    '<button id="btn' +
+    idalbum.toString() +
+    '" class="add-to-cart" onclick="ajouterPanier(' +
+    idalbum.toString() +
+    ')">Ajouter au panier</button>';
   // Utilisation d'une expression régulière pour supprimer
   // les caractères non autorisés dans les noms de fichiers : '!?.":$
   nomFic = nomFic.replace(/'|!|\?|\.|"|:|\$/g, "");
@@ -167,22 +174,12 @@ function createOneDiv(idalbum, album) {
     "<h4><strong>" +
     album.prix +
     "€" +
-    "</strong></h4>" +
-    '<select id="qt" name="q">' +
-    '<option value="1">1</option>' +
-    '<option value="2">2</option>' +
-    '<option value="3">3</option>' +
-    '<option value="4">4</option>' +
-    '<option value="5">5</option>' +
-    '<option value="6">6</option>' +
-    '<option value="7">7</option>' +
-    '<option value="8">8</option>' +
-    '<option value="9">9</option>' +
-    "</select>" +
-    '<button class="ajout_panier">Ajouter au panier</button>';
+    "</strong></h4>";
 
+  listAlbum.appendChild(button);
   card.appendChild(listAlbum);
 }
+
 function recuperationInput() {
   //recuperation de la saisie sur l'input
   var saisie = document.getElementById("searchInput").value;
@@ -199,17 +196,16 @@ function recuperationInput() {
       container.innerHTML = "";
       break;
     }
-
-    // on crée les cards pour les series saisies
-    if (idSerieToSave > 0) {
-      for (var [idAlbum, album] of albums.entries()) {
-        if (album.idSerie == idSerieToSave) {
-          createOneDiv(idAlbum, album);
-        }
+  }
+  // on crée les cards pour les series saisies
+  if (idSerieToSave > 0) {
+    console.log("on est là");
+    for (var [idAlbum, album] of albums.entries()) {
+      if (album.idSerie == idSerieToSave) {
+        createOneDiv(idAlbum, album);
       }
     }
   }
-
   // Recherche des albums de l'auteur
   console.log("Liste des albums par auteur");
   for (var [idAuteur, auteur] of auteurs.entries()) {
@@ -219,18 +215,46 @@ function recuperationInput() {
       container.innerHTML = "";
       break;
     }
-
-    //on créé les cards pour les auteurs saisis
-    if (idAuteurToSave > 0) {
-      for (var [idAlbum, album] of albums.entries()) {
-        if (album.idAuteur == idAuteurToSave) {
-          createOneDiv(idAlbum, album);
-        }
+  }
+  //on créé les cards pour les auteurs saisis
+  if (idAuteurToSave > 0) {
+    for (var [idAlbum, album] of albums.entries()) {
+      if (album.idAuteur == idAuteurToSave) {
+        createOneDiv(idAlbum, album);
       }
     }
   }
 }
-function ajoutPanier() {
-  var ajoutePanier = document.getElementsByClassName("ajout_panier");
-  ajoutePanier.setAttribute("id", "btn" + idAlbum.toString());
+function ajouterPanier(idAlbumToAdd) {
+  console.log(idAlbumToAdd);
+  var panier = document.getElementsByClassName("offcanvas-body small")[0];
+
+  var albumToAdd;
+  for (var [idAlbum, album] of albums.entries()) {
+    for (var [idSerie, serie] of series.entries()) {
+      if (idAlbum == parseInt(idAlbumToAdd)) {
+        albumToAdd = album;
+
+        break;
+      }
+    }
+  }
+  let nomFic = serie.nom + "-" + album.numero + "-" + album.titre;
+
+  var ligne = document.createElement("div");
+  ligne.setAttribute("class", "tableau");
+  ligne.setAttribute("id", "ligne" + idAlbumToAdd);
+  ligne.innerHTML =
+    '<img src="' +
+    srcAlbumMini +
+    nomFic +
+    '.jpg" class="imgpanier"></img>' +
+    "<p>" +
+    albumToAdd.prix +
+    "€</p>" +
+    "<p>" +
+    albumToAdd.titre +
+    "</p>" +
+    '<input type="number"  value="0" min="0" max="10">';
+  panier.appendChild(ligne);
 }

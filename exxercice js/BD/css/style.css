@@ -79,3 +79,11 @@ h4{
   text-align: right;
   left:10px;
 }
+.tableau{
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+}
+.imgpanier{
+  width: 10%;
+}
