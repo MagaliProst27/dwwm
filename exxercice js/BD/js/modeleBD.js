@@ -226,35 +226,61 @@ function recuperationInput() {
   }
 }
 function ajouterPanier(idAlbumToAdd) {
-  console.log(idAlbumToAdd);
+  
   var panier = document.getElementsByClassName("offcanvas-body small")[0];
 
-  var albumToAdd;
-  for (var [idAlbum, album] of albums.entries()) {
-    for (var [idSerie, serie] of series.entries()) {
-      if (idAlbum == parseInt(idAlbumToAdd)) {
-        albumToAdd = album;
+  // Dans ton modèle, tu as mis les clés en string, il faut donc utiliser un format string et non numérique
+  // La structure de donnée Map te permet d'indexer des valeurs par rapport à leurs clés. Tu n'as pas besoin de faire une boucle for, juste d'utiliser la méthode map.get(key)
+  var albumToAdd = albums.get(`${idAlbumToAdd}`);
 
-        break;
-      }
-    }
+  // Gestion d'erreur, que fait on si je ne trouve pas l'album ?
+  if (!albumToAdd) {
+    throw new Error(`Album with id ${adlbumId} not found`);
   }
-  let nomFic = serie.nom + "-" + album.numero + "-" + album.titre;
 
+  // Il faut le nom de la série pour construire le chemin de la miniature, on fait comme pour l'album avec l'identifiant qu'il porte dans sa donnée
+  var serieToAdd = series.get(albumToAdd.idSerie);
+
+  // Gestion d'erreur, que fait on si je ne trouve pas la série ?
+  if (!serieToAdd) {
+    throw new Error(`Serie with id ${albumToAdd.idSerie} not found`);
+  }
+
+  // On construit le chemin
+  let nomFic = serieToAdd.nom + "-" + albumToAdd.numero + "-" + albumToAdd.titre;
+
+  function calculLigne() {
+    let qte1;
+    let resultat1;
+    let prix1=document.getElementById("prixUnitaire");
+    prix1=parseFloat(idAlbumToAdd.prix)
+    let saisieQte=document.getElementById("quantité1");
+    saisieQte= qte1
+    resultat1=prix1*qte1;
+    
+  }
+  calculLigne();
+    
+  // On maj la page html
   var ligne = document.createElement("div");
   ligne.setAttribute("class", "tableau");
   ligne.setAttribute("id", "ligne" + idAlbumToAdd);
   ligne.innerHTML =
     '<img src="' +
-    srcAlbumMini +
+    srcAlbumMini + 
+    '/' +
     nomFic +
     '.jpg" class="imgpanier"></img>' +
-    "<p>" +
+    '<p id="prixUnitaire">' +
     albumToAdd.prix +
     "€</p>" +
     "<p>" +
     albumToAdd.titre +
     "</p>" +
-    '<input type="number"  value="0" min="0" max="10">';
+    '<input id="quantite1" type="number"  value="1" min="1" max="10">'+'<p>'+calculLigne() +'</p>';
   panier.appendChild(ligne);
+
+
 }
+
+  
