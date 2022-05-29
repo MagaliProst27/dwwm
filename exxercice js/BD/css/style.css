@@ -2,6 +2,26 @@ body {
   font: 1em sans-serif;
   padding: 0;
   margin: 0;
+  background: url('/images/bibliotheque.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  margin:0;
+  padding: 0;
+}
+.flex-container{
+  background: #000;
+  display: block flex;
+  width: 100%;
+  flex-direction: row;
+
+}
+.flex-item{
+display: flex;}
+h1{
+  color: white;
+  font-family: 'Cookie', cursive;
+font-family: 'Special Elite', cursive;
 }
 
 form {
@@ -10,8 +30,10 @@ form {
   padding: 0 5px;
 }
 
-p>label {
+label {
   display: block;
+  color: #A46490;
+  position: left;
 }
 
 legend {
@@ -53,37 +75,62 @@ input:focus:invalid {
 }
 .container_card{
   display: flex;
-
- flex-wrap: wrap;
+flex-direction: column;
+;
+ 
 }
 .card{
-  width: 30%;
-  background-color: rgba(215, 174, 195, 0.44);
-  -webkit-border-radius: 40px 40px 40px 40px;
-  -moz-border-radius: 40px 40px 40px 40px;
-  border-radius: 40px 40px ;
-  border: 5px groove #A46490;
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+  margin-left: 25%;
+  width: 50%;
+  background-color: rgba(53, 49, 51, 0.80);
+ 
+  border: 5px groove black;
   
+}
+.button{
+  color: blue;
+}
+p{
+  color:white;
 }
 h2{
   text-align: center;
   color: cadetblue;
 }
 img{
-  width: 50%;
   position: relative;
-  margin-left: 25%;
 
 }
 h4{
   text-align: right;
   left:10px;
+  color: white;
 }
-.tableau{
-  display: flex;
-  flex-direction: row;
-  align-content: space-around;
-}
+
 .imgpanier{
   width: 10%;
+}
+@media screen and (max-width:690px) {
+  .container_card{
+position: left;   
+ width: 100%;
+  }
+  .card{
+    width:100%
+  }
+  h2{
+   font-size: 15px;
+  }
+  p{
+    display: none;
+  }
+}
+@media screen and (min-width:691px ) and (max-width:1180px){
+  .container_card{
+display: flex;
+  }
+  
 }

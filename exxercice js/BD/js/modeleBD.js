@@ -143,38 +143,41 @@ function createOneDiv(idalbum, album) {
   let button = document.createElement("div");
 
   button.innerHTML =
+  '<div class="button" >'+
     '<button id="btn' +
     idalbum.toString() +
-    '" class="add-to-cart" onclick="ajouterPanier(' +
+    '"style="color:blue;" class="add-to-cart btn.btn-primary" onclick="ajouterPanier(' +
     idalbum.toString() +
-    ')">Ajouter au panier</button>';
+    ')">&#128722;</button>'+'</div>';
   // Utilisation d'une expression régulière pour supprimer
   // les caractères non autorisés dans les noms de fichiers : '!?.":$
   nomFic = nomFic.replace(/'|!|\?|\.|"|:|\$/g, "");
   //mise en page des cards des BD
 
   listAlbum.innerHTML =
+  '<img src="' +
+    srcAlbumMini +
+    nomFic +
+    '.jpg"></img>' +
+    '<div class="info">'+
     "<h2>" +
     "N°: " +
     album.numero +
     " " +
     album.titre +
     "</h2>" +
-    '<img src="' +
-    srcAlbumMini +
-    nomFic +
-    '.jpg"></img>' +
+    
     "<p> Série: " +
     serie.nom +
     " " +
     "<br>" +
     "Auteur(s): " +
     auteur.nom +
-    " </p>" +
+    " </p>"+
     "<h4><strong>" +
     album.prix +
     "€" +
-    "</strong></h4>";
+    "</strong></h4>" +'</div>';
 
   listAlbum.appendChild(button);
   card.appendChild(listAlbum);
@@ -253,11 +256,11 @@ function ajouterPanier(idAlbumToAdd) {
     let qte1;
     let resultat1;
     let prix1=document.getElementById("prixUnitaire");
-    prix1=parseFloat(idAlbumToAdd.prix)
-    let saisieQte=document.getElementById("quantité1");
-    saisieQte= qte1
+    prix1=parseFloat(albumToAdd.prix)
+    let saisieQte=document.getElementById("quantite1");
+    qte1=parseInt(saisieQte)
     resultat1=prix1*qte1;
-    
+    console.log(typeof(saisieQte));
   }
   calculLigne();
     

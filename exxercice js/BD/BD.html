@@ -5,95 +5,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cookie&family=Special+Elite&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <title>Les BD</title>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Liste des BD</h1>
-        
+    <div class="flex-container">
+        <h1>Bibliliothèque</h1>
+
         <label for="recherche"> Recherche par séries ou auteurs</label>
-        
-    
-        <input type="text" placeholder="Auteurs/série"  id="searchInput" value=""  >
+        <input type="button" value="météo" onclick="meteo()">
+<div id="zone-meteo"></div>
+<div class="flex-item">
+        <input type="text" placeholder="Auteurs/série" id="searchInput" value="">
         <button id="searchInput2" onclick="recuperationInput()">recherche</button>
-       
-        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">&#128722;</button>
-
-<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasBottomLabel">&#128722; Votre panier</h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body small">
     
-      <div class="preview"></div>
-  </div>
-</div>
-    
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"
+            aria-controls="offcanvasBottom">&#128722;</button>
 
-  
-</div>
+        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom"
+            aria-labelledby="offcanvasBottomLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasBottomLabel">&#128722; Votre panier</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body small">
+
+                <div class="preview"></div>
+            </div>
+        </div>
     </div>
-        <div class="row">
-            
-            <div class="col-sm-4 col-lg-6" hidden>
-                <p id="messageId">
-                    <div class="container">
-                    
 
-                   
 
-                    <div id="suggestions"></div>
-                    </div>
-                    <label for="id">Id de l'album :</label>
-                    <input type="number" required id="id" value="0" min="0" title="Saisissez un numéro et validez">
-                </p>
-                <p>
-                    <label for="serie">Série :</label>
-                    <input type="text" id="serie" >
+    </div>
+    </div>
+    <div class="row">
 
-                    <label for="numero">Album N° :</label>
-                    <input type="text" id="numero" >
+        <div class="col-sm-4 col-lg-6" hidden>
+            <p id="messageId">
+            <div class="container">
 
-                    <label for="titre">Titre :</label>
-                    <input type="text" id="titre" >
 
-                    <label for="auteur">Auteur :</label>
-                    <input type="text" id="auteur"  >
-                </p>
-                <p>
-                    <label for="prix">Prix :</label>
-                    <input type="number" id="prix" >
-                </p>
-                <div is="toto">
-                    <img src="images/noComicsMini.jpeg" id="albumMini">
-                </div>
+
+
+                <div id="suggestions"></div>
             </div>
-            <div class="col-sm-8 col-lg-6">
+            <label for="id">Id de l'album :</label>
+            <input type="number" required id="id" value="0" min="0" title="Saisissez un numéro et validez">
+            </p>
+            <p>
+                <label for="serie">Série :</label>
+                <input type="text" id="serie">
 
-                <img src="images/noComics.jpeg" id="album" hidden>
+                <label for="numero">Album N° :</label>
+                <input type="text" id="numero">
 
+                <label for="titre">Titre :</label>
+                <input type="text" id="titre">
+
+                <label for="auteur">Auteur :</label>
+                <input type="text" id="auteur">
+            </p>
+            <p>
+                <label for="prix">Prix :</label>
+                <input type="number" id="prix">
+            </p>
+            <div is="toto">
+                <img src="images/noComicsMini.jpeg" id="albumMini">
             </div>
+        </div>
+        <div class="col-sm-8 col-lg-6">
+
+            <img src="images/noComics.jpeg" id="album" hidden>
 
         </div>
 
     </div>
-    <div class="container_card"  ></div>
-   
+
+    </div>
+    <div class="container_card"></div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script src="data/albums.js"></script>
     <script src="data/series.js"></script>
     <script src="data/auteurs.js"></script>
