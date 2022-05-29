@@ -44,7 +44,7 @@ legend {
 
 input[type=text],
 input[type=email],
-input[type=number],
+
 textarea,
 fieldset {
   /* requis pour composer de manière appropriée les éléments
@@ -93,7 +93,7 @@ flex-direction: column;
 .button{
   color: blue;
 }
-p{
+;.info-cache{
   color:white;
 }
 h2{
@@ -109,28 +109,62 @@ h4{
   left:10px;
   color: white;
 }
+.offcanvas-header {
+  background: royalblue;
+}
+.offcanvas-body.small{
+  background: rgba(53, 49, 51, 0.80);
+}
+h5{
+  color: #fff;
+}
 
+input[type=number],
+textarea,
+fieldset {
+  width: 25%;
+  height: 30%;
+}
+.tableau{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border: 2px groove black
+  
+}
+p{
+  color: #fff;
+}
 .imgpanier{
   width: 10%;
 }
+
 @media screen and (max-width:690px) {
   .container_card{
 position: left;   
  width: 100%;
+ display: flex;
+ align-items: end;
   }
   .card{
-    width:100%
+    width:100%;
+    
+    
   }
   h2{
    font-size: 15px;
   }
-  p{
+  .info-cache{
     display: none;
   }
 }
 @media screen and (min-width:691px ) and (max-width:1180px){
   .container_card{
 display: flex;
+  }
+  h2{
+    font-size: 20px;
   }
   
 }

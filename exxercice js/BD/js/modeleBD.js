@@ -167,7 +167,7 @@ function createOneDiv(idalbum, album) {
     album.titre +
     "</h2>" +
     
-    "<p> Série: " +
+    '<p class="info-cache"> Série: ' +
     serie.nom +
     " " +
     "<br>" +
@@ -228,10 +228,136 @@ function recuperationInput() {
     }
   }
 }
-function ajouterPanier(idAlbumToAdd) {
-  
-  var panier = document.getElementsByClassName("offcanvas-body small")[0];
+class PanierItem {
+  constructor(picture, title, unitPrice) {
+    this.picture = picture;
+    this.title = title;
+    this.unitPrice = unitPrice;
+    this.quantity = 1;
+    this.listeners = [];
+  }
 
+  addListener(listener) {
+    this.listeners.push(listener);
+  }
+
+  fireChanges() {
+    this.listeners.forEach((listener) => {
+      listener.onChange(this);
+    });
+  }
+
+  handleEvent(e) {
+    e.stopPropagation();
+    switch (e.type) {
+      case "input":
+        this.onQuantityChange(e);
+        break;
+      default:
+        console.log(e.target);
+    }
+  }
+
+  onQuantityChange(event) {
+    if (event.target.value && this.quantity !== event.target.value) {
+      this.quantity = parseFloat(event.target.value);
+      this.fireChanges();
+    }
+  }
+
+  calcPrice() {
+    return this.unitPrice * this.quantity;
+  }
+
+  render() {
+    // Miniature element
+    const itemPictureHtml = document.createElement('img');
+    itemPictureHtml.setAttribute('class', 'imgpanier');
+    itemPictureHtml.src = this.picture;
+    // prix element
+    const unitPriceHtml = document.createElement('p');
+    unitPriceHtml.innerText = `${this.unitPrice} €`;
+    // Quantité element
+    const quantityHtml = document.createElement('input');
+    quantityHtml.setAttribute('type', 'number');
+    quantityHtml.setAttribute('value', this.quantity);
+    quantityHtml.setAttribute('min', '1');
+    quantityHtml.setAttribute('max', '10');
+    quantityHtml.addEventListener('input', this);
+
+    // Conteneur
+    const htmlView = document.createElement('div');
+    htmlView.appendChild(itemPictureHtml);
+    htmlView.appendChild(unitPriceHtml);
+    htmlView.appendChild(quantityHtml);
+    
+    return htmlView;
+  }
+}
+
+class Panier {
+  constructor() {
+    this.items = new Map();
+    this.totalPrice = 0.0;
+  }
+//ajout au panier 
+  addItem(id, item) {
+    item.addListener(this);
+    this.items.set(id, item);
+    this.calcTotalPrice();
+  }
+//suppression du panier
+  removeItem(id) {
+    this.items.delete(id);
+    this.onChange();
+  }
+//calcul total
+  calcTotalPrice() {
+    this.totalPrice = Array.from(this.items.values()).reduce((acc, currentItem) => {
+      const price = currentItem.calcPrice();
+      return acc + price;
+    }, 0);
+  }
+
+  onChange(item) {
+    this.calcTotalPrice();
+    this.render();
+  }
+
+  render() {
+    var panier = document.getElementsByClassName("offcanvas-body small")[0];
+    panier.innerHTML = '';
+    if (this.items.size > 0) {
+      // Affichage du prix total
+      const total = document.createElement('p');
+      total.setAttribute("class", "text-primary text-right");
+      total.innerText = `Coût total : ${this.totalPrice}`;
+      panier.appendChild(total);
+      // Affichage des éléments du panier
+      this.items.forEach((value, key) => {
+        var ligne = document.createElement("div");
+        ligne.setAttribute("class", "tableau");
+        ligne.setAttribute("id", `item-${key}`);
+        ligne.appendChild(value.render());
+        var deleteHtml = document.createElement('button');
+        deleteHtml.textContent = 'Supprimer';
+        deleteHtml.onclick = () => {this.removeItem(key)};
+        ligne.appendChild(deleteHtml);
+        panier.appendChild(ligne);
+      });
+    } else {
+      const defaultHtml = document.createElement("p");
+      defaultHtml.setAttribute("class", "text-primary text-center");
+      defaultHtml.innerText = 'Panier vide';
+      panier.appendChild(defaultHtml);
+    }
+  }
+}
+
+const basket = new Panier();
+basket.render();
+
+function ajouterPanier(idAlbumToAdd) {
   // Dans ton modèle, tu as mis les clés en string, il faut donc utiliser un format string et non numérique
   // La structure de donnée Map te permet d'indexer des valeurs par rapport à leurs clés. Tu n'as pas besoin de faire une boucle for, juste d'utiliser la méthode map.get(key)
   var albumToAdd = albums.get(`${idAlbumToAdd}`);
@@ -252,38 +378,10 @@ function ajouterPanier(idAlbumToAdd) {
   // On construit le chemin
   let nomFic = serieToAdd.nom + "-" + albumToAdd.numero + "-" + albumToAdd.titre;
 
-  function calculLigne() {
-    let qte1;
-    let resultat1;
-    let prix1=document.getElementById("prixUnitaire");
-    prix1=parseFloat(albumToAdd.prix)
-    let saisieQte=document.getElementById("quantite1");
-    qte1=parseInt(saisieQte)
-    resultat1=prix1*qte1;
-    console.log(typeof(saisieQte));
-  }
-  calculLigne();
-    
-  // On maj la page html
-  var ligne = document.createElement("div");
-  ligne.setAttribute("class", "tableau");
-  ligne.setAttribute("id", "ligne" + idAlbumToAdd);
-  ligne.innerHTML =
-    '<img src="' +
-    srcAlbumMini + 
-    '/' +
-    nomFic +
-    '.jpg" class="imgpanier"></img>' +
-    '<p id="prixUnitaire">' +
-    albumToAdd.prix +
-    "€</p>" +
-    "<p>" +
-    albumToAdd.titre +
-    "</p>" +
-    '<input id="quantite1" type="number"  value="1" min="1" max="10">'+'<p>'+calculLigne() +'</p>';
-  panier.appendChild(ligne);
+  const picturePath = srcAlbumMini + '/' + nomFic + '.jpg';
 
-
+  const itemToAdd = new PanierItem(picturePath, albumToAdd.titre, albumToAdd.prix);
+  basket.addItem(idAlbumToAdd, itemToAdd);
+    // On maj la page html
+  basket.render();
 }
-
-  
