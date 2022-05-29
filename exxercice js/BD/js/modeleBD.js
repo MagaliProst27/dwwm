@@ -287,6 +287,7 @@ class PanierItem {
 
     // Conteneur
     const htmlView = document.createElement('div');
+    htmlView.setAttribute("class","info-produit")
     htmlView.appendChild(itemPictureHtml);
     htmlView.appendChild(unitPriceHtml);
     htmlView.appendChild(quantityHtml);
@@ -340,7 +341,7 @@ class Panier {
         ligne.setAttribute("id", `item-${key}`);
         ligne.appendChild(value.render());
         var deleteHtml = document.createElement('button');
-        deleteHtml.textContent = 'Supprimer';
+        deleteHtml.textContent = '\u274c';
         deleteHtml.onclick = () => {this.removeItem(key)};
         ligne.appendChild(deleteHtml);
         panier.appendChild(ligne);
