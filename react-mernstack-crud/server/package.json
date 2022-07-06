@@ -1,0 +1,16 @@
+{
+  "name": "react-mernstack-crud",
+  "version": "1.0.0",
+  "description": "liste etudiant ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Magali Prost",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.4.3",
+    "morgan": "^1.10.0"
+  }
+}
